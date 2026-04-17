@@ -1,0 +1,400 @@
+/* =========================================================
+   1. BASE HEADER LAYOUT
+   ========================================================= */
+
+.main-header-section {
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* High z-index to ensure header floats above hero content */
+    z-index: 999;
+}
+
+.main-header-nav-wrapper {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* =========================================================
+   2. BRAND IDENTITY
+   ========================================================= */
+.main-header-logo img {
+    /* Fluid Height: Scales from 35px (mobile) to 50px (desktop) using clamp for smooth resizing */
+    height: clamp(35px, 8vw, 50px);
+    width: auto;
+    object-fit: contain;
+}
+
+/* =========================================================
+   3. STICKY HEADER BEHAVIOR
+   ========================================================= */
+.main-header-sticky {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    animation: stickySlide 0.4s ease;
+}
+
+@keyframes stickySlide {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   4. NAVIGATION LINKS (Desktop)
+   ========================================================= */
+.main-header-menu-list {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.main-header-nav-item a {
+    text-decoration: none;
+    color: var(--heading-color);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 18px;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-header-nav-item a:hover {
+    color: var(--secondary-color);
+    background: rgba(42, 157, 143, 0.08);
+    transform: translateY(-2px);
+}
+
+.main-header-nav-item a.main-header-active-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    background: rgba(42, 157, 143, 0.05);
+}
+
+/* =========================================================
+   5. AUTHENTICATION BUTTONS
+   ========================================================= */
+
+/* Shared Styles: Fluid padding & font-size for seamless mobile scaling */
+.main-header-btn-login,
+.main-header-btn-signup {
+    /* Responsive sizing: scales padding and font size based on viewport width */
+    padding: 0 clamp(12px, 2vw, 25px) !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: clamp(0.8rem, 1vw, 0.95rem) !important;
+
+    transition: all 0.3s ease !important;
+
+    /* Matches logo height scaling */
+    height: clamp(35px, 5vw, 45px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    white-space: nowrap;
+    /* Prevent text wrap on tiny screens */
+}
+
+/* Login Button Variant */
+.main-header-btn-login {
+    background: transparent !important;
+    color: var(--heading-color) !important;
+    border: 2px solid var(--secondary-color) !important;
+}
+
+.main-header-btn-login:hover {
+    background: var(--secondary-color) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.2);
+}
+
+/* Signup Button Variant */
+.main-header-btn-signup {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+}
+
+.main-header-btn-signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(38, 70, 83, 0.4);
+    filter: brightness(1.1);
+}
+
+/* =========================================================
+   6. MOBILE MENU & INTERACTION
+   ========================================================= */
+
+.main-header-mobile-trigger {
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    cursor: pointer;
+    display: none;
+}
+
+.main-header-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(2px);
+}
+
+/* =========================================================
+   7. RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+/* Tablet & Mobile (< 992px) */
+@media (max-width: 992px) {
+
+    .main-header-section,
+    .main-header-sticky {
+        height: 70px;
+    }
+
+    /* Reveal Hamburger Menu */
+    .main-header-mobile-trigger {
+        display: block;
+    }
+
+    /* Transform navigation into a side drawer */
+    .main-header-navigation {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #fff;
+        z-index: 9999;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 2rem;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+
+        overflow-y: auto;
+    }
+
+    /* Active State: Slide Drawer In */
+    .main-header-show-menu {
+        right: 0;
+    }
+
+    .main-header-menu-list {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+        width: 100%;
+    }
+
+    .main-header-nav-item a {
+        font-size: 1.1rem;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 10px 15px;
+        border-radius: 10px;
+    }
+
+    /* Sidebar-specific active state style */
+    .main-header-nav-item a.main-header-active-link {
+        background: rgba(42, 157, 143, 0.1);
+    }
+
+    /* Mobile Drawer Header */
+    .main-header-mobile-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1rem;
+    }
+
+    .main-header-mobile-head h5 {
+        font-weight: 700;
+        color: var(--heading-color);
+        margin: 0;
+    }
+
+    .main-header-mobile-close {
+        font-size: 1.4rem;
+        color: var(--heading-color);
+        cursor: pointer;
+        background: #f4f4f4;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Small Mobile Override (< 576px) */
+@media (max-width: 576px) {
+
+    .main-header-right {
+        gap: 0.8rem !important;
+    }
+
+    .main-header-btns {
+        gap: 0.5rem !important;
+    }
+}
+
+/* =========================================================
+   8. DROPDOWN STYLES
+   ========================================================= */
+.main-header-profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.main-header-profile-trigger {
+    width: clamp(35px, 8vw, 45px);
+    height: clamp(35px, 8vw, 45px);
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    border: 2px solid var(--secondary-color);
+    padding: 1px;
+    background: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-header-profile-trigger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+}
+
+.main-header-profile-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.main-header-profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.98);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    z-index: 1000;
+    transform-origin: top right;
+}
+
+.main-header-profile-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.main-header-dropdown-header {
+    padding: 0 5px 10px 5px;
+    text-align: left;
+}
+
+.main-header-greeting {
+    font-size: 0.75rem;
+    color: #777;
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.main-header-username-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.main-header-dropdown-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d6d6d6, transparent);
+    margin: 5px 0 10px 0;
+}
+
+.main-header-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.main-header-dropdown-item i {
+    font-size: 1.2rem;
+}
+
+.main-header-admin-item:hover {
+    color: var(--secondary-color);
+}
+
+.main-header-logout-item:hover {
+    color: #e53935;
+}
+
+.main-header-delete-account {
+    color: #dc3545;
+}
+
+.main-header-delete-account:hover {
+    background: rgba(229, 57, 53, 0.1);
+    color: #e53935;
+}

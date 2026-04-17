@@ -1,0 +1,109 @@
+/*====== Import Google Fonts (Montserrat & Kaushan Script) ======*/
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+/*====== Global Color Palette & Typography Variables ======*/
+:root {
+  --primary-color: #264653;
+  --secondary-color: #2a9d8f;
+  --heading-color: #0b2727;
+  --text-color: #6e7074;
+  --font-name: "Montserrat", sans-serif;
+  --subtitle-font-name: "Kaushan Script", cursive;
+}
+
+/*====== CSS Reset & Box Sizing ======*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*====== Base Body Styling ======*/
+body {
+  font-family: var(--font-name);
+}
+
+/*====== Default Section Padding ======*/
+section {
+  padding: 40px 0px;
+}
+
+/*====== Mobile Responsiveness for Sections ======*/
+@media only screen and (max-width: 768px) {
+  section {
+    padding: 30px 0px;
+  }
+}
+
+/*====== Heading Typography Colors ======*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+}
+
+/*====== Global Anchor Tag Styling ======*/
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+/*====== Unordered List Reset ======*/
+ul {
+  list-style: none;
+}
+
+/*====== Primary Button Components ======*/
+.primary__btn {
+  background: var(--secondary-color) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 0.4rem 1.5rem !important;
+}
+
+/*====== Primary Button Link Styling ======*/
+.primary__btn a {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.primary__btn a:hover {
+  color: inherit;
+}
+
+/*====== Secondary Button Components ======*/
+.secondary__btn {
+  background: transparent !important;
+  color: #0b2727 !important;
+  border: none !important;
+  font-weight: 500 !important;
+}
+
+/*====== Secondary Button Link Styling ======*/
+.secondary__btn a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: var(--heading-color);
+}
+
+.secondary__btn a:hover {
+  color: inherit;
+}
+
+/*====== Section Subtitle Component with Custom Font ======*/
+.section__subtitle {
+  background: var(--secondary-color);
+  font-family: var(--subtitle-font-name);
+  width: max-content;
+  max-width: 100%; /* Updated: Responsiveness */
+  padding: 0.5rem 1.3rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem); /* Updated: Responsiveness */
+  color: #fff;
+}

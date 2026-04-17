@@ -1,0 +1,304 @@
+/* Admin Dashboard Styles*/
+
+/* ============ 1. Page Layout ============ */
+.ad_dash_section {
+    padding: 2rem 0 4rem 0;
+    /* Ensure the dashboard covers at least the full viewport height for footer pushing */
+    min-height: 100vh;
+}
+
+/* ============ 2. Header & Welcome Section ============ */
+.ad_dash_welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.ad_dash_title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.5px;
+}
+
+.ad_dash_subtitle {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 500;
+}
+
+.ad_dash_highlight {
+    color: var(--secondary-color);
+    font-family: var(--subtitle-font-name);
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+/* Date Pill: Floating context indicator */
+.ad_dash_date_pill {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.ad_dash_date_pill:hover {
+    transform: translateY(-2px);
+}
+
+/* ============ 3. Glass Card Architecture ============ */
+/* Shared base class for all dashboard widgets.
+   Implements modern glassmorphism (translucency + blur) to create depth.
+*/
+.ad_dash_glass_card {
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.92) 0%,
+            rgba(255, 255, 255, 0.7) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    height: 100%;
+    /* Hardware acceleration for smoother hover animations */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateZ(0);
+}
+
+.ad_dash_glass_card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* ============ 4. KPI/Stat Widgets ============ */
+.ad_dash_stat_widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Color-coding for visual distinction between metric categories */
+.ad_dash_primary_widget {
+    border-left: 3px solid var(--secondary-color);
+}
+
+.ad_dash_secondary_widget {
+    border-left: 3px solid #e76f51;
+}
+
+.ad_dash_stat_label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    opacity: 0.85;
+}
+
+.ad_dash_stat_num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.ad_dash_stat_desc {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
+    font-weight: 500;
+}
+
+.ad_dash_icon_wrap {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dynamic interaction: Icon rotation on widget hover */
+.ad_dash_stat_widget:hover .ad_dash_icon_wrap {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.ad_dash_primary_widget .ad_dash_icon_wrap {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--secondary-color);
+}
+
+.ad_dash_secondary_widget .ad_dash_icon_wrap {
+    background: rgba(231, 111, 81, 0.1);
+    color: #e76f51;
+}
+
+/* ============ 5. Quick Actions Grid ============ */
+.ad_dash_acts_header {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.ad_dash_acts_title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Visual divider line to separate header from grid */
+.ad_dash_acts_divider {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0%, transparent 100%);
+    margin-left: 20px;
+}
+
+.ad_dash_act_link {
+    text-decoration: none !important;
+    display: block;
+    height: 100%;
+}
+
+.ad_dash_act_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+}
+
+.ad_dash_icon_circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Action-specific theme colors */
+.ad_dash_color_sec {
+    color: var(--secondary-color);
+}
+
+.ad_dash_color_blue {
+    color: #457b9d;
+}
+
+.ad_dash_color_red {
+    color: #e63946;
+}
+
+.ad_dash_color_teal {
+    color: #2a9d8f;
+}
+
+.ad_dash_act_card h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    transition: color 0.3s;
+}
+
+/* Hover Indicator Arrow */
+.ad_dash_hover_ind {
+    margin-top: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Interactive States: Micro-interactions for engagement */
+.ad_dash_act_card:hover .ad_dash_icon_circle {
+    transform: scale(1.15);
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.ad_dash_act_card:hover h5 {
+    color: var(--secondary-color);
+}
+
+.ad_dash_act_card:hover .ad_dash_hover_ind {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff;
+    transform: translateX(6px);
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+}
+
+/* ============ 6. Responsive Adaptations ============ */
+@media (max-width: 768px) {
+
+    /* Stack header elements vertically on smaller tablets/mobile */
+    .ad_dash_welcome {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .ad_dash_stat_num {
+        font-size: 2.2rem;
+    }
+
+    .ad_dash_glass_card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+
+    /* Adjust typography for very small devices to prevent text overflow */
+    .ad_dash_title {
+        font-size: 1.6rem;
+    }
+
+    .ad_dash_stat_num {
+        font-size: 1.8rem;
+    }
+
+    .ad_dash_stat_label {
+        font-size: 0.7rem;
+    }
+}

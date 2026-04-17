@@ -1,0 +1,443 @@
+/* =========================================
+   FINAL PROFESSIONAL WEATHER WIDGET
+   ========================================= */
+
+:root {
+    --sw-primary: #2a9d8f;
+    --sw-secondary: #264653;
+    --sw-text: #555b6e;
+    --sw-box-bg: #ffffff;
+    --sw-border: rgba(0, 0, 0, 0.08);
+}
+
+/* --- Main Container --- */
+.sw-container {
+    padding: 0.5rem;
+    font-family: "Montserrat", sans-serif;
+    color: var(--sw-secondary);
+    animation: sw-fade-in 0.6s ease-out;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@keyframes sw-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Header Section --- */
+.sw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sw-location-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--sw-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.sw-location-group i {
+    color: var(--sw-primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.location-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sw-condition-badge {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--sw-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* --- Hero Section --- */
+.sw-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sw-hero-icon {
+    font-size: clamp(2.8rem, 10vw, 3.5rem);
+    background: linear-gradient(135deg, var(--sw-primary), var(--sw-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(42, 157, 143, 0.2));
+    line-height: 1;
+}
+
+.sw-hero-right {
+    text-align: left;
+}
+
+.sw-hero-temp {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    color: var(--sw-secondary);
+}
+
+.sw-hero-feels {
+    font-size: 0.85rem;
+    color: var(--sw-text);
+    font-weight: 500;
+    display: block;
+    white-space: nowrap;
+}
+
+/* --- Stats Boxes --- */
+.sw-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.sw-stat-box {
+    background: var(--sw-box-bg);
+    border: 1px solid var(--sw-border);
+    border-radius: 12px;
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    min-width: 0;
+}
+
+.sw-stat-box:hover {
+    border-color: var(--sw-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+}
+
+.sw-stat-box i {
+    font-size: 1.3rem;
+    color: var(--sw-primary);
+    margin-bottom: 4px;
+}
+
+.sw-stat-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+    width: 100%;
+}
+
+.sw-stat-val {
+    font-weight: 700;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    color: var(--sw-secondary);
+    white-space: nowrap;
+}
+
+.sw-stat-unit {
+    font-size: 0.7rem;
+    color: var(--sw-text);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* --- Forecast Cards --- */
+.sw-forecast h6 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--sw-text);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.sw-forecast-grid {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.sw-forecast-card {
+    flex: 1;
+    background: var(--sw-box-bg);
+    border: 1px solid var(--sw-border);
+    border-radius: 12px;
+    padding: 12px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    min-width: 0;
+}
+
+.sw-forecast-card:hover {
+    border-color: var(--sw-primary);
+    transform: translateY(-3px);
+}
+
+.sw-fc-day {
+    font-size: clamp(0.75rem, 2vw, 0.8rem);
+    font-weight: 600;
+    color: var(--sw-text);
+}
+
+.sw-forecast-card i {
+    font-size: 1.4rem;
+    color: var(--sw-primary);
+}
+
+.sw-fc-temp {
+    font-weight: 800;
+    color: var(--sw-secondary);
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+/* --- Footer Area --- */
+.sw-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--sw-border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--sw-text);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sw-sun-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.sw-sun-icon {
+    color: #e9c46a;
+    font-size: 1.1rem;
+}
+
+.sw-moon-icon {
+    color: #264653;
+    font-size: 1.1rem;
+}
+
+/* --- Loading & Error UI --- */
+.sw-container.sw-loading,
+.sw-container.sw-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    text-align: center;
+}
+
+.sw-spinner {
+    width: 35px;
+    height: 35px;
+    border: 3px solid var(--sw-border);
+    border-top: 3px solid var(--sw-primary);
+    border-radius: 50%;
+    animation: sw-spin 1s linear infinite;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes sw-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.sw-anim-spin {
+    animation: sw-spin 12s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes sw-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.sw-anim-float {
+    animation: sw-float 4s ease-in-out infinite;
+}
+
+@keyframes sw-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.sw-anim-bounce {
+    animation: sw-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes sw-flash {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+.sw-anim-flash {
+    animation: sw-flash 2s ease-in-out infinite;
+}
+
+/* =========================================
+   MOBILE & TABLET OPTIMIZATIONS
+   ========================================= */
+
+@media (max-width: 576px) {
+    .sw-container {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .sw-header {
+        align-items: flex-start;
+    }
+
+    .sw-location-group {
+        max-width: 65%;
+    }
+
+    .sw-hero {
+        margin-top: 0.5rem;
+    }
+
+    .sw-stats-row {
+        gap: 6px;
+    }
+
+    /* Added padding to the grid container.
+       This ensures when a card lifts up (-3px) or scales,
+       it doesn't clip against the edge of the container.
+    */
+    .sw-forecast-grid {
+        padding: 5px;
+        gap: 6px;
+    }
+
+    /* Reduced card sizes for mobile.
+       Smaller padding and font sizes ensure they fit without overflow.
+    */
+    .sw-forecast-card {
+        padding: 8px 2px;
+        /* reduced from 12px 5px */
+    }
+
+    .sw-fc-day {
+        font-size: 0.7rem;
+        /* slightly smaller */
+    }
+
+    .sw-forecast-card i {
+        font-size: 1.2rem;
+        /* smaller icon */
+    }
+
+    .sw-fc-temp {
+        font-size: 0.85rem;
+        /* smaller temp */
+    }
+}
+
+@media (max-width: 350px) {
+    .sw-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .sw-location-group {
+        max-width: 100%;
+    }
+
+    .sw-hero {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .sw-hero-right {
+        text-align: center;
+    }
+
+    .sw-stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sw-stat-box {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 8px 15px;
+    }
+
+    .sw-stat-details {
+        align-items: flex-end;
+    }
+
+    .sw-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}

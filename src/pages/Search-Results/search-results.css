@@ -1,0 +1,190 @@
+/* =========================================
+   Layout & Container Structure
+   ========================================= */
+.search-results-page-section {
+    background: #f8f9fa;
+    padding-bottom: 5rem;
+
+    /* Ensure footer remains pushed down even with few results */
+    min-height: 80vh;
+}
+
+/* =========================================
+   Header & Sorting Controls
+   ========================================= */
+.search-results-page-header {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.search-results-page-header h5 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.search-results-page-header h5 strong {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Sorting Label Container */
+.search-results-page-sort-box {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    gap: 10px;
+}
+
+/* =========================================
+   Custom Dropdown Component
+   ========================================= */
+.sort-dropdown-container {
+    position: relative;
+    width: 180px;
+}
+
+/* Trigger Button */
+.sort-dropdown-btn {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    padding: 8px 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.sort-dropdown-btn:hover,
+.sort-dropdown-btn.open {
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.1);
+}
+
+.sort-dropdown-btn i {
+    transition: transform 0.3s;
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.sort-dropdown-btn i.rotate {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu Body */
+.sort-dropdown-content {
+    position: absolute;
+    top: 115%;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 99;
+    opacity: 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sort-dropdown-content.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+/* Dropdown Menu Items */
+.sort-dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: 0.2s;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.sort-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.sort-dropdown-item:hover {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--secondary-color);
+}
+
+.sort-dropdown-item.active {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+/* =========================================
+   Empty State Feedback
+   ========================================= */
+.search-results-page-empty i {
+    font-size: 3.5rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.search-results-page-empty h4 {
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+.search-results-page-empty p {
+    color: var(--text-color);
+}
+
+/* =========================================
+   Responsive Overrides
+   ========================================= */
+@media (max-width: 767px) {
+
+    /* Tighten grid margins */
+    .spots-grid-row {
+        margin-left: -4px !important;
+        margin-right: -4px !important;
+    }
+
+    /* Force 2-column layout (50%) on mobile for balanced card display */
+    .spots-grid-row>div[class*="col-"] {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Stack header elements vertically */
+    .search-results-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 1rem;
+    }
+
+    .search-results-page-sort-box {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sort-dropdown-container {
+        width: auto;
+        flex-grow: 1;
+    }
+}

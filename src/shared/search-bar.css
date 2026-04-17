@@ -1,0 +1,135 @@
+/* =========================================
+   CONTAINER & VISUAL ARCHITECTURE
+   ========================================= */
+.search-bar-container {
+    width: 100%;
+
+    /* Fluid padding strategy: compacts on mobile (15px) but expands for desktop breathing room */
+    padding: 8px 10px 8px clamp(15px, 3vw, 30px);
+
+    border-radius: 100px;
+
+    /* Composite layer effects to achieve the frosted glass aesthetic */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Subtle border and shadow to separate the glass layer from the hero image */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.3s ease;
+
+    /* Layout context for child elements */
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-bar-form {
+    width: 100%;
+    gap: 10px;
+}
+
+/* Elevate visual prominence when user interacts */
+.search-bar-container:hover,
+.search-bar-container:focus-within {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   INPUT FIELD TYPOGRAPHY
+   ========================================= */
+.search-bar-container input {
+    /* Absorb all available remaining horizontal space */
+    flex-grow: 1;
+    width: 100%;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    /* Fluid typography ensures readability without breaking layout on small viewports */
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 300;
+    color: var(--heading-color);
+    letter-spacing: 0.5px;
+    height: 50px;
+
+    /* Graceful degradation for long queries on narrow screens */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-bar-container input::placeholder {
+    color: var(--heading-color);
+    opacity: 0.6;
+    font-weight: 300;
+    text-overflow: ellipsis;
+}
+
+/* =========================================
+   ACTION BUTTON
+   ========================================= */
+.search-bar-btn {
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+
+    /* Fluid padding maintains touch target size while saving space on mobile */
+    padding: 12px clamp(20px, 4vw, 35px);
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+
+    font-weight: 500;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    /* Enforce button visibility to prevent collapse on flex-shrink scenarios */
+    flex-shrink: 0;
+}
+
+.search-bar-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.search-bar-btn:active {
+    background: var(--primary-color);
+}
+
+/* =========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================= */
+
+/* Optimization for Tablets & Standard Mobile (< 768px) */
+@media (max-width: 768px) {
+    .search-bar-container {
+        /* Reduce padding to maximize horizontal space for input text */
+        padding: 6px 6px 6px 15px;
+    }
+
+    .search-bar-container input {
+        height: 45px;
+    }
+}
+
+/* Optimization for Compact Mobile (< 400px) */
+@media (max-width: 400px) {
+    .search-bar-btn {
+        /* Minimize button footprint on very small screens */
+        padding: 10px 15px;
+        font-size: 0.7rem;
+    }
+
+    .search-bar-container input::placeholder {
+        font-size: 0.9rem;
+    }
+}

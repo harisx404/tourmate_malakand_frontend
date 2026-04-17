@@ -1,0 +1,198 @@
+/* =========================================
+   1. HERO SECTION STYLES
+   ========================================= */
+.home-hero-content {
+    /* Fluid spacing to adapt to header height variations */
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.home-hero-subtitle img {
+    width: clamp(2.5rem, 5vw, 3.2rem);
+    height: clamp(2.5rem, 5vw, 3.2rem);
+}
+
+.home-hero-content h1 {
+    /* Responsive typography scaling using clamp(min, preferred, max) */
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: var(--heading-color);
+    line-height: 1.2;
+}
+
+.home-text-highlight {
+    color: var(--secondary-color);
+}
+
+.home-hero-content p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* --- Hero Media Grid --- */
+.home-hero-img-box {
+    padding-top: 2rem;
+    width: 100%;
+}
+
+.home-hero-img-box img,
+.home-hero-img-box video {
+    width: 100%;
+    /* Fluid height ensures visual consistency across device widths */
+    height: clamp(150px, 30vw, 350px);
+    border-radius: 20px;
+    border: 1px solid var(--secondary-color);
+    object-fit: cover;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.05);
+}
+
+.home-hero-img-box img:hover,
+.home-hero-img-box video:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   2. FEATURES SECTION
+   ========================================= */
+.home-features-subtitle {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-weight: 500;
+    color: #2a9d8f;
+    font-family: var(--subtitle-font-name);
+}
+
+.home-features-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+/* =========================================
+   3. POPULAR SPOTS HEADERS
+   ========================================= */
+.home-popular-title {
+    font-size: clamp(2rem, 5vw, 2.3rem);
+    font-weight: 500;
+}
+
+/* =========================================
+   4. IMPACT & STATISTICS SECTION
+   ========================================= */
+.home-impact-content h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-top: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.home-impact-content p {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+
+.home-stats-wrapper {
+    margin-top: 2.5rem;
+}
+
+/* Stats Metric Cards */
+.home-stats-box {
+    /* Minimum width prevents layout collapse on very narrow screens */
+    min-width: 80px;
+}
+
+.home-stats-box span {
+    width: clamp(50px, 10vw, 75px);
+    height: clamp(50px, 10vw, 75px);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: #fff;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    border-radius: 16px;
+    box-shadow: 0 8px 15px rgba(42, 157, 143, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.home-stats-box:hover span {
+    transform: translateY(-5px);
+}
+
+.home-stats-box h6 {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    margin-top: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.home-impact-img img {
+    width: 100%;
+    max-width: 80%;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+    border-radius: 12px;
+}
+
+/* =========================================
+   5. GALLERY & ABOUT HEADERS
+   ========================================= */
+.home-gallery-title,
+.home-about-title {
+    font-size: clamp(2rem, 5vw, 2.3rem);
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   6. MOBILE RESPONSIVENESS
+   Targeting devices < 768px
+   ========================================= */
+@media only screen and (max-width: 768px) {
+
+    /* Flatten Hero Media: Align images in a single row by removing top margins */
+    .home-hero-img-box.mt-4,
+    .home-hero-img-box.mt-5 {
+        margin-top: 0 !important;
+    }
+
+    /* Horizontal Alignment for Stats on Mobile */
+    .home-stats-wrapper {
+        flex-direction: row !important;
+        justify-content: space-between;
+        gap: 0.5rem !important;
+        width: 100%;
+    }
+
+    /* Equal width distribution for stat boxes */
+    .home-stats-box {
+        width: 32%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .home-stats-box h6 {
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+
+    /* Center alignment for Impact Map */
+    .home-impact-img {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .home-impact-img img {
+        max-width: 100%;
+    }
+}

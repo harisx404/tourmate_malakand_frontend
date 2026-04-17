@@ -1,0 +1,148 @@
+/* ============ Layout & Container ============ */
+
+.not-found-page-section {
+    /* Use dynamic viewport height (dvh) for mobile UI consistency; fallback to vh. */
+    min-height: 80vh;
+    min-height: 80dvh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* Safe area padding for small mobile viewports. */
+    padding: 20px 10px;
+
+    /* Dark overlay ensures text contrast against the background image. */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+        url("../../assets/images/hero-img02.jpg");
+    background-size: cover;
+    background-position: center;
+
+    /* Parallax effect for desktop; reset in media queries for mobile performance. */
+    background-attachment: fixed;
+
+    overflow-x: hidden;
+}
+
+/* ============ Card ============ */
+
+.not-found-page-content {
+    display: inline-block;
+
+    /* Responsive scaling: 1.5rem (mobile) -> 3rem (desktop). */
+    padding: clamp(1.5rem, 5vw, 3rem) !important;
+
+    /* Caps width at 550px for desktop while maintaining 90% fluid width on mobile. */
+    width: min(90%, 550px);
+    margin: 0 auto;
+
+    /* Translucent glass effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    /* "Cut glass" border treatment */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+
+    animation: not-found-page-fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* ============ Typography ============ */
+
+.not-found-page-error-code {
+    /* Large scale typography using fluid clamp (5rem -> 8rem). */
+    font-size: clamp(5rem, 15vw, 8rem);
+    font-weight: 900;
+    line-height: 1;
+    font-family: var(--font-name), sans-serif;
+
+    /* Gradient masking for text fill. */
+    background: linear-gradient(135deg, var(--secondary-color), #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.not-found-page-heading {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.not-found-page-desc {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+/* ============ Interactive Elements ============ */
+
+.not-found-page-home-btn {
+    padding: 14px 32px;
+    background: var(--secondary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid transparent;
+
+    /* Prevent label wrapping on narrow viewports. */
+    white-space: nowrap;
+}
+
+.not-found-page-home-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--secondary-color);
+    color: #fff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ============ Animations ============ */
+
+@keyframes not-found-page-fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ Responsive Overrides ============ */
+
+/* Touch Devices: Remove fixed background to prevent jitter during scroll. */
+@media (max-width: 992px) {
+    .not-found-page-section {
+        background-attachment: scroll;
+    }
+}
+
+/* Landscape/Short Viewports: Ensure vertical clearance for content. */
+@media (max-height: 600px) {
+    .not-found-page-section {
+        align-items: flex-start;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        height: auto;
+    }
+}

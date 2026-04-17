@@ -1,0 +1,321 @@
+/* =========================================
+   Layout & Container Styles
+   ========================================= */
+.spot-card-wrapper {
+    margin-bottom: 2rem;
+}
+
+.spot-card-container {
+    /* Override Bootstrap defaults to enforce design system borders/radius */
+    border: 1px solid rgba(42, 157, 143, 0.15) !important;
+    border-radius: 16px !important;
+    background: #fff;
+
+    /* Subtle depth for un-hovered state */
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 15px -3px rgba(0, 0, 0, 0.05),
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+
+    /* Physics-based transition for hover interactions */
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    /* Force Hardware Acceleration to prevent jitter during transform */
+    transform: translateZ(0);
+
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Lift card and deepen shadow to indicate interactivity */
+.spot-card-container:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border-color: var(--secondary-color) !important;
+}
+
+/* =========================================
+   Image & Media
+   ========================================= */
+.spot-card-img-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+}
+
+.spot-card-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Micro-interaction: Zoom image on card hover */
+.spot-card-container:hover .spot-card-img-box img {
+    transform: scale(1.1);
+}
+
+/* "Popular" overlay badge with glassmorphism effect */
+.spot-card-popular-tag {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 15px;
+    right: 15px;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--secondary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.spot-card-popular-tag i {
+    color: #e76f51;
+}
+
+/* =========================================
+   Content & Body
+   ========================================= */
+.spot-card-body {
+    padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.spot-card-header {
+    margin-bottom: 0.8rem;
+}
+
+.spot-card-location {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.spot-card-location i {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.spot-card-rating {
+    background: #d5f7f3;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    color: var(--heading-color);
+    font-weight: 600;
+}
+
+.spot-card-rating i {
+    color: #2a9d8f;
+}
+
+.rating-count {
+    color: var(--text-color);
+    font-size: 0.75rem;
+    margin-left: 2px;
+    font-weight: 400;
+}
+
+.spot-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spot-card-title a {
+    text-decoration: none;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+.spot-card-title a:hover {
+    color: var(--secondary-color);
+}
+
+/* Footer Section with Action Button */
+.spot-card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.spot-card-district-info span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.spot-card-district-info h6 {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Primary Action Button - Overrides Bootstrap Link styles */
+.spot-card-explore-btn {
+    background: transparent !important;
+    color: var(--secondary-color) !important;
+    border: 1px solid var(--secondary-color) !important;
+    border-radius: 50px !important;
+    padding: 0.4rem 1.2rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+    display: inline-block;
+}
+
+.spot-card-explore-btn:hover {
+    background: var(--secondary-color) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+    transform: translateY(-2px);
+}
+
+/* =================================================================
+   MOBILE RESPONSIVENESS (<768px)
+   Strategy: Override default Bootstrap stacking to enforce a 3-column
+   dense grid layout, even on small screens.
+   ================================================================= */
+@media (max-width: 767px) {
+
+    .spot-card-wrapper {
+        margin-bottom: 0.5rem;
+    }
+
+    .spot-card-container {
+        border-radius: 8px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Fixed height specifically tuned for the 3-column mobile grid */
+    .spot-card-img-box {
+        height: 80px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .spot-card-popular-tag {
+        top: 4px;
+        right: 4px;
+        padding: 2px 5px;
+        font-size: 0.45rem;
+        border-radius: 4px;
+    }
+
+    /* Tighten padding to accommodate reduced width */
+    .spot-card-body {
+        padding: 0.5rem !important;
+    }
+
+    .spot-card-header {
+        margin-bottom: 0.3rem;
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+
+    /* Scaling typography for readability in dense grid */
+    .spot-card-location {
+        font-size: 0.55rem;
+    }
+
+    .spot-card-location i {
+        font-size: 0.65rem;
+    }
+
+    .spot-card-rating {
+        padding: 1px 4px;
+        font-size: 0.55rem;
+        border-radius: 4px;
+    }
+
+    .spot-card-title {
+        font-size: 0.7rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .spot-card-footer {
+        padding-top: 0.4rem;
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 6px;
+    }
+
+    /* Force visibility of district labels on mobile (normally hidden in dense views) */
+    .spot-card-district-info span {
+        display: block !important;
+        font-size: 0.45rem;
+        line-height: 1;
+        margin-bottom: 1px;
+        opacity: 0.8;
+    }
+
+    .spot-card-district-info h6 {
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+
+    /* * Button & Link Fixes:
+     * 1. Remove browser default underlines from parent links.
+     * 2. Force full-width block display for easier touch targets.
+     */
+    .spot-card-footer a {
+        width: 100%;
+        text-decoration: none !important;
+        border: none !important;
+    }
+
+    .spot-card-explore-btn {
+        width: 100%;
+        display: block !important;
+        text-align: center;
+        border: 1px solid var(--secondary-color) !important;
+        border-radius: 50px !important;
+        background-color: transparent !important;
+        color: var(--secondary-color) !important;
+        padding: 2px 0 !important;
+        font-size: 0.6rem !important;
+        font-weight: 700 !important;
+        line-height: 1.5;
+        text-decoration: none !important;
+    }
+
+    /* * Grid Override:
+     * Force 33% width on columns to prevent stacking, bypassing 
+     * standard Bootstrap behavior for '.mobile-spot-col'.
+     */
+    .mobile-spot-col {
+        flex: 0 0 33.333333% !important;
+        max-width: 33.333333% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        margin-bottom: 8px !important;
+    }
+}

@@ -1,0 +1,100 @@
+/* ============ Card Container ============ */
+/*feature__item */
+.feature-card-item {
+    padding: 2rem 1.5rem;
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-bottom: 1px solid #2a9d8f;
+    border-right: 1px solid #2a9d8f;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    cursor: default;
+    position: relative;
+}
+
+/* Hover Effect: Card Lift */
+.feature-card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(42, 157, 143, 0.15);
+    border-color: var(--secondary-color);
+}
+
+/* ============ Icon Bubble ============ */
+/*feature__img-bubble */
+.feature-card-img-bubble {
+    width: 70px;
+    /* Slightly smaller bubble to match reduced height */
+    height: 70px;
+    margin: 0 auto 1rem auto;
+    /* Reduced margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    /* DEFAULT STATE: Solid Teal Background */
+    background: var(--secondary-color);
+
+    transition: all 0.3s ease;
+}
+
+.feature-card-img-bubble img {
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+
+    /* DEFAULT STATE: White Icon */
+    filter: brightness(0) invert(1);
+}
+
+/* ============ Hover Animation ============ */
+
+/* On Hover: Only the Shadow Ring appears */
+.feature-card-item:hover .feature-card-img-bubble {
+    box-shadow: 0 0 0 8px rgba(42, 157, 143, 0.2);
+    /* The light teal ripple */
+    transform: scale(1.05);
+}
+
+/* Icon stays the same size/color on hover */
+.feature-card-item:hover .feature-card-img-bubble img {
+    transform: scale(1.1);
+    /* Slight zoom for nice feel */
+}
+
+/* ============ Typography ============ */
+/*feature__title */
+.feature-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+/*feature__desc */
+.feature-card-desc {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* Updated: Responsiveness */
+@media (max-width: 576px) {
+    .feature-card-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .feature-card-img-bubble {
+        width: 55px;
+        height: 55px;
+    }
+
+    .feature-card-desc {
+        font-size: 0.9rem;
+    }
+}

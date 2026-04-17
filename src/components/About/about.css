@@ -1,0 +1,153 @@
+/*====== Container Spacing for About Section ======*/
+.about-slider-wrapper {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/*====== Slider List Padding Override ======*/
+/*====== Prevents card shadows from clipping by adding padding logic ======*/
+.about-slider-wrapper .slick-list {
+    padding: 20px 5px 40px 5px !important;
+    margin: 0 -10px;
+}
+
+/*====== Flex Layout for Equal Height Cards ======*/
+/*====== Forces slick-track to behave as flex container for uniform height ======*/
+.about-slider-wrapper .slick-track {
+    display: flex !important;
+    gap: 0;
+}
+
+.about-slider-wrapper .slick-slide {
+    height: auto;
+    display: flex;
+}
+
+/*====== Slide Item Wrapper ======*/
+.about-item {
+    padding: 0 12px;
+    width: 100%;
+    display: flex;
+}
+
+/*====== About Card Component Design ======*/
+/*====== Uses Flexbox column layout to push member info to bottom ======*/
+.about-card {
+    background: #fff;
+    border: 1px solid rgba(42, 157, 143, 0.15);
+    border-radius: 16px;
+    padding: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*====== Card Hover Elevation Effect ======*/
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(38, 70, 83, 0.15);
+    border-color: var(--secondary-color);
+}
+
+/*====== Decorative Quote Icon Styling ======*/
+.about-quote-icon i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    opacity: 0.2;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/*====== Typography for Text ======*/
+.about-desc {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.7;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+/*====== Member Info Layout ======*/
+.about-member-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px dashed rgba(42, 157, 143, 0.2);
+    padding-top: 1.2rem;
+    margin-top: auto;
+}
+
+/*====== Avatar Image Styling ======*/
+.about-member-img-box img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-member-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-member-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+.about-member-role {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/*====== Custom Pagination Dots for Carousel ======*/
+.slick-dots {
+    bottom: -10px;
+}
+
+.slick-dots li button:before {
+    font-size: 10px;
+    color: var(--heading-color);
+    opacity: 0.2;
+    transition: opacity 0.3s;
+}
+
+.slick-dots li.slick-active button:before {
+    color: var(--secondary-color) !important;
+    opacity: 1;
+    font-size: 12px;
+}
+
+/* Updated: Responsiveness */
+@media (max-width: 576px) {
+    .about-card {
+        padding: 1.2rem;
+    }
+
+    .about-desc {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    .about-member-img-box img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .about-member-name {
+        font-size: 0.95rem;
+    }
+}

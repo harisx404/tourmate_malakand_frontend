@@ -1,0 +1,142 @@
+/* ============ Modern Glassy Toast ============ */
+.custom-toast-container {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    width: 380px;
+    max-width: 90vw;
+
+    /* The Glass Effect */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+        0 8px 32px rgba(31, 38, 135, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    z-index: 999999;
+    /* High z-index to stay above everything */
+    overflow: hidden;
+
+    /* Smooth Transition for Entry/Exit */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Initial State (Hidden) */
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+    pointer-events: none;
+}
+
+/* Active State (Visible) */
+.custom-toast-container.custom-toast-active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: all;
+}
+
+/* Inactive State (Exit Animation) */
+.custom-toast-container.custom-toast-inactive {
+    opacity: 0;
+    transform: translateX(50px) scale(0.95);
+    pointer-events: none;
+}
+
+/* ============ Icon Wrapper ============ */
+.custom-toast-icon-wrapper {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    /* Slightly squircle for modern look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}
+
+/* ============ Content Typography ============ */
+.custom-toast-content {
+    flex-grow: 1;
+    padding-top: 2px;
+}
+
+.custom-toast-content h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.custom-toast-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #666;
+    /* Use a neutral gray if var is missing */
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* ============ Close Button ============ */
+.custom-toast-close-btn {
+    background: transparent;
+    border: none;
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: 0.3s;
+}
+
+.custom-toast-close-btn:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+/* ============ Progress Bar ============ */
+.custom-toast-progress-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.custom-toast-progress-fill {
+    height: 100%;
+    width: 100%;
+    /* Start at 100% */
+    /* Animation is triggered via JS style prop or CSS class */
+}
+
+@keyframes custom-toast-progress-anim {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    .custom-toast-container {
+        right: 5%;
+        left: 5%;
+        width: 90%;
+        top: 20px;
+    }
+
+    .custom-toast-container.custom-toast-active {
+        transform: translateX(0) scale(1);
+        /* Reset transform for mobile centering */
+    }
+}

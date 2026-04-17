@@ -1,0 +1,368 @@
+/* =========================================
+   Sidebar Container (Desktop Layout)
+   ========================================= */
+.filter-sidebar {
+    background: #fff;
+    border: 1px solid rgba(42, 157, 143, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+
+    /* Enable scrolling within the sidebar if content overflows viewport */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(42, 157, 143, 0.3) transparent;
+}
+
+/* Custom Scrollbar Styling (Webkit) */
+.filter-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.filter-sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(42, 157, 143, 0.3);
+    border-radius: 10px;
+}
+
+.filter-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* =========================================
+   Header & Controls
+   ========================================= */
+.filter-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.filter-sidebar-header h5 {
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.filter-sidebar-reset-btn {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: 0.2s;
+}
+
+.filter-sidebar-reset-btn:hover {
+    color: var(--primary-color);
+}
+
+/* Mobile Close Icon */
+.filter-sidebar-close-icon {
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    cursor: pointer;
+    /* Expanded touch target for mobile usability */
+    padding: 5px;
+    margin: -5px;
+}
+
+/* Filter Group Headings */
+.filter-sidebar-group h6 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+}
+
+.filter-sidebar-divider {
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
+    margin: 1.5rem 0;
+}
+
+/* =========================================
+   1. Modern Dropdown Component
+   ========================================= */
+.filter-sidebar-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.filter-sidebar-dropdown-btn {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.filter-sidebar-dropdown-btn:hover,
+.filter-sidebar-dropdown-btn.open {
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.1);
+}
+
+.filter-sidebar-dropdown-btn i {
+    transition: transform 0.3s;
+}
+
+.filter-sidebar-dropdown-btn i.rotate {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Content Wrapper */
+.filter-sidebar-dropdown-content {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 99;
+    opacity: 0;
+}
+
+.filter-sidebar-dropdown-content.show {
+    max-height: 220px;
+    overflow-y: auto;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.filter-sidebar-dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: 0.2s;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.filter-sidebar-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.filter-sidebar-dropdown-item:hover {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--secondary-color);
+}
+
+.filter-sidebar-dropdown-item.active {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+/* =========================================
+   2. Season Pills Component
+   ========================================= */
+.filter-sidebar-pills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-sidebar-pill {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+}
+
+.filter-sidebar-pill:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.filter-sidebar-pill.active {
+    background: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3);
+}
+
+/* =========================================
+   3. Rating Rows Component
+   ========================================= */
+.filter-sidebar-rating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-sidebar-rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+
+.filter-sidebar-rating-row:hover {
+    background: #f9f9f9;
+}
+
+.filter-sidebar-rating-row.active {
+    background: rgba(42, 157, 143, 0.08);
+    border-color: rgba(42, 157, 143, 0.2);
+}
+
+.filter-sidebar-rating-row span {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.filter-sidebar-rating-row.active span {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+/* Star Icons */
+.filter-sidebar-stars i {
+    font-size: 1rem;
+    margin-right: 3px;
+}
+
+.filter-sidebar-stars i.filled {
+    color: var(--secondary-color);
+}
+
+.filter-sidebar-stars i.ri-star-line {
+    color: #ddd;
+}
+
+/* =========================================
+   4. Tag Chips Component
+   ========================================= */
+.filter-sidebar-tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filter-sidebar-tag-box {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-sidebar-tag-box:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.filter-sidebar-tag-box.active {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+/* =================================================================
+   Mobile Sidebar Behavior (<991px)
+   Implements a sliding drawer pattern with safe area handling.
+   ================================================================= */
+@media (max-width: 991px) {
+    .filter-sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        /* Hidden off-screen by default */
+
+        /* Responsive Sizing:
+           1. 100dvh handles dynamic browser chrome on mobile.
+           2. 'min' ensures drawer never exceeds 85% width on small phones.
+        */
+        height: 100dvh;
+        width: min(300px, 85vw);
+
+        /* Ensure drawer sits above all other UI elements */
+        z-index: 10000;
+
+        /* Hardware-accelerated slide animation */
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Reset container styles for full-height drawer mode */
+        border-radius: 0;
+        border: none;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+
+        /* Scroll Interaction Improvements:
+           1. Allow scrolling within the drawer.
+           2. Prevent scroll chaining to the body (overscroll-behavior).
+           3. Respect device safe areas (notches/home indicators).
+        */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+        padding-top: calc(1.5rem + env(safe-area-inset-top));
+    }
+
+    .filter-sidebar.active {
+        left: 0;
+        /* Slide drawer into view */
+    }
+
+    /* Modal Backdrop */
+    .filter-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        /* Fallback */
+        height: 100dvh;
+
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(3px);
+        /* Frosted glass effect */
+        z-index: 9999;
+
+        animation: fadeIn 0.3s ease forwards;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

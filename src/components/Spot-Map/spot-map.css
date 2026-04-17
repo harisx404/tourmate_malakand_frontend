@@ -1,0 +1,485 @@
+/* ==========================================================================
+   SPOT DETAILS MAP STYLES
+   ========================================================================== */
+
+/* --- LAYOUT WRAPPER --- */
+.tm-spot-map-wrapper {
+    background: #fff;
+    border-radius: 1rem;
+    padding: clamp(1rem, 3vw, 1rem);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 2.5rem;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    /* Hardware acceleration for smooth hover */
+    transform: translateZ(0);
+}
+
+.tm-spot-map-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* --- HEADER --- */
+.tm-spot-map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tm-spot-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tm-spot-map-heading {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tm-spot-map-heading i {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+
+.tm-spot-dist-badge {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.1);
+    animation: tmFadeIn 0.5s ease;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.tm-spot-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* --- BUTTONS --- */
+.tm-spot-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    white-space: nowrap;
+}
+
+.tm-btn-primary {
+    background: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(42, 157, 143, 0.25);
+}
+
+.tm-btn-primary:hover {
+    background: #264653;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(42, 157, 143, 0.35);
+}
+
+.tm-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.tm-spin {
+    animation: tmSpin 1s linear infinite;
+}
+
+/* --- DROPDOWN --- */
+.tm-spot-dropdown-container {
+    position: relative;
+    min-width: 140px;
+    flex-shrink: 0;
+}
+
+.tm-spot-dropdown-trigger {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0b2727;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.tm-spot-dropdown-trigger:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--secondary-color);
+}
+
+.tm-spot-dropdown-trigger.active {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.tm-spot-dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 100%;
+    min-width: 150px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    z-index: 50;
+    animation: tmFadeIn 0.2s ease-out;
+}
+
+.tm-spot-dropdown-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6e7074;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tm-spot-dropdown-item:hover {
+    background: rgba(42, 157, 143, 0.1);
+    color: #0b2727;
+}
+
+.tm-spot-dropdown-item.active {
+    background: var(--secondary-color);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- MAP CANVAS BOX --- */
+.tm-spot-map-box {
+    width: 100%;
+    height: clamp(400px, 60vh, 400px);
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #e9ecef;
+}
+
+.tm-spot-map-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* --- ROUTE INFO CARD --- */
+.tm-spot-route-card {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: tmSlideUp 0.4s ease;
+    max-width: 90%;
+    width: auto;
+}
+
+.tm-spot-route-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tm-spot-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tm-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.tm-value {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.tm-spot-divider {
+    width: 1px;
+    height: 25px;
+    background: #ddd;
+}
+
+.tm-spot-btn-cancel {
+    background: #ffeded;
+    color: #e63946;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.tm-spot-btn-cancel:hover {
+    background: #e63946;
+    color: #fff;
+}
+
+/* --- OVERLAYS & LOADERS --- */
+.tm-spot-loader {
+    position: absolute;
+    inset: 0;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    color: #6e7074;
+}
+
+.tm-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(42, 157, 143, 0.2);
+    border-top: 3px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: tmSpin 0.8s linear infinite;
+    margin-bottom: 10px;
+}
+
+/* Reset Button */
+.tm-spot-reset-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #0b2727;
+    transition: 0.2s;
+    z-index: 5;
+}
+
+.tm-spot-reset-btn:hover {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+/* --- MARKERS --- */
+.tm-spot-marker-pin {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/684/684908.png');
+    background-size: cover;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    transition: transform 0.2s ease;
+}
+
+.tm-spot-marker-pin:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+.tm-spot-user-dot {
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-color);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: tmPulse 2s infinite;
+}
+
+/* --- CUSTOM POPUP DESIGN (New) --- */
+.tm-custom-snap-popup .mapboxgl-popup-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.tm-custom-snap-popup .mapboxgl-popup-tip {
+    border-top-color: rgba(255, 255, 255, 0.95);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes tmFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes tmSlideUp {
+    from {
+        transform: translate(-50%, 50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes tmSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes tmPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(42, 157, 143, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(42, 157, 143, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(42, 157, 143, 0);
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .tm-spot-map-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .tm-spot-controls-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .tm-btn-primary {
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .tm-spot-dropdown-container {
+        min-width: 120px;
+    }
+
+    /* small screen layout for card */
+    .tm-spot-route-card {
+        width: 80%; /* Updated: Responsiveness */
+        bottom: 10px;
+        padding: 7px 12px !important; /* Updated: Responsiveness */
+        justify-content: center;
+    }
+
+    .tm-spot-route-stats {
+        gap: 7px;
+    }
+
+    .tm-label {
+        font-size: 0.5rem;
+        font-weight: 600;
+    }
+
+    .tm-value {
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    .tm-spot-btn-cancel {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .tm-spot-controls-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tm-spot-dropdown-container {
+        width: 100%;
+    }
+
+    .tm-spot-dropdown-trigger {
+        justify-content: space-between;
+    }
+
+    .tm-spot-dist-badge {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Updated: Responsiveness */
+    .tm-spot-route-card {
+        width: 90%;
+    }
+}

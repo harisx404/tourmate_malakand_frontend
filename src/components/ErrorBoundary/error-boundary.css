@@ -1,0 +1,188 @@
+/* =========================================
+   Layout & Container Strategy
+   ========================================= */
+.error-boundary-section {
+    /* * Viewport Management:
+     * Use 'dvh' to account for dynamic mobile browser toolbars (Safari/Chrome iOS),
+     * ensuring the error page always fills the visible area without scrolling.
+     */
+    min-height: 80vh;
+    min-height: 80dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+
+    /* Visual safety buffer for small viewports */
+    padding: 20px;
+
+    /* Prevent horizontal overflow triggers */
+    overflow-x: hidden;
+}
+
+/* =========================================
+   Component Styles: Glassmorphism Card
+   ========================================= */
+.error-boundary-card {
+    background: rgba(255, 255, 255, 0.85);
+
+    /* Frosted glass effect for depth and modern aesthetic */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+
+    /* Fluid scaling: scales padding proportionally between mobile (1.5rem) and desktop (2.5rem) */
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    text-align: center;
+    border-top: 5px solid #e63946;
+
+    /* Constraint: Cap width at 600px for readability, but allow full fluidity on mobile */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* * Flexbox Patch:
+ * Forces button wrapping on ultra-narrow devices (e.g., Galaxy Fold) 
+ * where the flex container might otherwise cause overflow.
+ */
+.error-boundary-card>.d-flex {
+    flex-wrap: wrap;
+}
+
+.error-boundary-icon i {
+    /* Fluid iconography */
+    font-size: clamp(3rem, 10vw, 4rem);
+    color: #e63946;
+    margin-bottom: 1rem;
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+.error-boundary-card h2 {
+    /* Fluid typography for headers */
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.error-boundary-card p {
+    color: #6e7074;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.6;
+}
+
+/* =========================================
+   DevTools: Debugging UI
+   ========================================= */
+.error-boundary-details {
+    margin-top: 1rem;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #d63384;
+
+    /* Ensure long stack traces do not break the card layout */
+    overflow-x: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+/* =========================================
+   Interactive Elements
+   ========================================= */
+.error-boundary-refresh-btn {
+    padding: 8px 16px;
+    background: var(--secondary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+
+    /* Prevent flex-shrink distortion on small screens */
+    flex-shrink: 0;
+}
+
+.error-boundary-refresh-btn:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.error-boundary-refresh-btn:active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.error-boundary-home-link {
+    padding: 8px 16px;
+    background: var(--secondary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid transparent;
+
+    flex-shrink: 0;
+}
+
+.error-boundary-home-link:hover {
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.error-boundary-home-link:active {
+    background-color: var(--primary-color);
+    color: #fff !important;
+}
+
+/* =========================================
+   Animations & Device Overrides
+   ========================================= */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Edge Case: Landscape mode on short mobile screens requires scrolling enabled */
+@media (max-height: 600px) {
+    .error-boundary-section {
+        padding: 40px 20px;
+        align-items: flex-start;
+        height: auto;
+    }
+}

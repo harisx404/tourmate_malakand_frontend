@@ -1,0 +1,139 @@
+/* =========================================
+   1. Hero Container & Layout
+   ========================================= */
+.common-section-container {
+    /* Fixed height establishes a consistent cinematic viewport on desktop */
+    height: 180px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    /* Layered Background: Applies a brand-tinted gradient overlay
+       to ensure text contrast against the hero image. */
+    background: linear-gradient(to bottom,
+            rgba(38, 70, 83, 0.25),
+            rgba(11, 39, 39, 0.5)),
+        url("../assets/images/tourmate-malakand-commonsection.png");
+
+    background-position: center 55%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+
+    /* Brand identity accent line */
+    border-bottom: 5px solid var(--secondary-color);
+}
+
+/* =========================================
+   2. Glassmorphism Title Overlay
+   ========================================= */
+.common-section-title-box {
+    position: relative;
+    z-index: 10;
+    max-width: 90%;
+
+    /* Translucent background with blur filter creates the "frosted glass" effect */
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+    /* Multi-sided borders simulate light refraction on edges */
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(42, 157, 143, 0.3);
+
+    border-radius: 100px;
+    padding: 0.8rem 3.5rem;
+
+    /* Elevation shadow for depth separation from background */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+
+    /* Entrance animation triggering on mount */
+    animation: premium-slide-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+
+    /* Flexbox used to strictly center content within the pill shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* =========================================
+   3. Typography & Branding
+   ========================================= */
+.common-section-title-box h1 {
+    color: #fff;
+    margin: 0;
+    font-family: var(--font-name), sans-serif;
+
+    /* Base desktop font sizing */
+    font-size: 1.8rem;
+
+    font-weight: 800;
+    text-transform: uppercase;
+
+    /* Wide tracking for premium aesthetic */
+    letter-spacing: 0.2em;
+
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   4. Animations
+   ========================================= */
+@keyframes premium-slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   5. Responsive Overrides
+   ========================================= */
+
+/* Mobile & Tablet Breakpoint (<768px) */
+@media (max-width: 768px) {
+    .common-section-container {
+        /* Reduce vertical footprint on smaller screens */
+        height: 100px;
+    }
+
+    .common-section-title-box {
+        padding: 0.6rem 2rem;
+        border-radius: 50px;
+
+        /* Increase opacity and blur to improve readability on dense mobile screens */
+        background: rgba(38, 70, 83, 0.45);
+        backdrop-filter: blur(12px);
+    }
+
+    .common-section-title-box h1 {
+        font-size: 1.2rem;
+        letter-spacing: 0.15em;
+        white-space: nowrap;
+    }
+}
+
+/* Compact Mobile Breakpoint (<400px) */
+@media (max-width: 400px) {
+    .common-section-title-box {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .common-section-title-box h1 {
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+    }
+}

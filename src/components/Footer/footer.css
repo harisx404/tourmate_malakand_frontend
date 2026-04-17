@@ -1,0 +1,209 @@
+/* =========================================
+   FOOTER CONTAINER & LAYOUT
+   ========================================= */
+.footer-section {
+    background: var(--primary-color);
+    /* Fluid padding for vertical breathing room */
+    padding-top: clamp(40px, 5vw, 60px);
+    padding-bottom: 20px;
+    color: #fff;
+    position: relative;
+    /* Visual separation from main content */
+    border-top: 5px solid var(--secondary-color);
+}
+
+/* =========================================
+   BRAND IDENTITY
+   ========================================= */
+.footer-logo img {
+    /* Responsive width scaling */
+    width: clamp(140px, 15vw, 160px);
+    margin-bottom: 1rem;
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* =========================================
+   SOCIAL MEDIA ICONS
+   ========================================= */
+.footer-social-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2rem;
+}
+
+.footer-social-icon {
+    text-decoration: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* Glassmorphism effect on dark background */
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social-icon:hover {
+    background: var(--secondary-color);
+    color: #fff;
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+}
+
+/* =========================================
+   SECTION HEADINGS
+   ========================================= */
+.footer-link-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Custom underline accent */
+.footer-link-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 25px;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+/* =========================================
+   NAVIGATION LINKS
+   ========================================= */
+.footer-quick-links li {
+    padding: 0.4rem 0;
+}
+
+.footer-quick-links li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+}
+
+.footer-quick-links li a:hover {
+    color: var(--secondary-color);
+    padding-left: 6px;
+    /* Subtle interaction slide */
+    color: #fff;
+}
+
+/* =========================================
+   CONTACT INFORMATION
+   ========================================= */
+.footer-contact-icon-box {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-contact-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.footer-contact-text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.93);
+    font-weight: 500;
+    margin-bottom: 0;
+    word-break: break-word;
+}
+
+/* =========================================
+   FOOTER BOTTOM (LEGAL & COPYRIGHT)
+   ========================================= */
+.footer-bottom-bar {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.footer-legal-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.footer-legal-links a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (<768px)
+   ========================================= */
+@media (max-width: 768px) {
+    .footer-link-title {
+        margin-top: 1.5rem;
+        /* Typography adjustment for split 50/50 layout */
+        font-size: 1rem;
+    }
+
+    /* Scale down links to fit tight 50% columns without wrapping */
+    .footer-quick-links li a {
+        font-size: 0.85rem;
+    }
+
+    /* Enforce center alignment for stacked layout on mobile */
+    .footer-copyright {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .footer-legal-links {
+        justify-content: center !important;
+        margin-top: 5px;
+    }
+
+    .footer-bottom-bar {
+        padding-bottom: 1rem;
+    }
+}

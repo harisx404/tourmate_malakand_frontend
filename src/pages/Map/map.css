@@ -1,0 +1,532 @@
+/* ==========================================================================
+   TOURMATE MALAKAND MAP PAGE
+   ========================================================================== */
+
+:root {
+    /* Centralized theme variables for consistent styling */
+    --tm-glass-bg: rgba(255, 255, 255, 0.95);
+    --tm-glass-border: rgba(255, 255, 255, 0.8);
+    --primary-color: #264653;
+    --secondary-color: #2a9d8f;
+    --heading-color: #0b2727;
+    --text-color: #6e7074;
+}
+
+/* ============ 1. LAYOUT ============ */
+.tm-map-section-wrapper {
+    padding: 40px 0;
+    background: #f8f9fa;
+    min-height: 80vh;
+    font-family: var(--font-name, "Montserrat", sans-serif);
+}
+
+.tm-map-main-box {
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border: 6px solid #fff;
+    background: #e9ecef;
+    /* Optimizes rendering performance by isolating this container */
+    contain: content;
+}
+
+.tm-map-canvas-full {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.tm-map-loader-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    color: #fff;
+    backdrop-filter: blur(5px);
+}
+
+/* ============ 2. CONTROLS ============ */
+.tm-map-internal-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 30;
+    display: flex;
+    gap: 12px;
+}
+
+.tm-custom-dropdown-container {
+    position: relative;
+    min-width: 160px;
+}
+
+.tm-custom-dropdown-trigger {
+    background: var(--tm-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--tm-glass-border);
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.tm-custom-dropdown-trigger:hover {
+    transform: translateY(-2px);
+    background: #fff;
+}
+
+.tm-custom-dropdown-trigger.active {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+}
+
+.tm-dropdown-arrow {
+    margin-left: 8px;
+    opacity: 0.6;
+}
+
+.tm-custom-dropdown-menu {
+    position: absolute;
+    top: 115%;
+    left: 0;
+    width: 100%;
+    min-width: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 200px;
+    overflow-y: auto;
+    animation: tmFadeIn 0.2s ease-out;
+}
+
+@keyframes tmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tm-custom-dropdown-item {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tm-custom-dropdown-item:hover {
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--heading-color);
+    padding-left: 16px;
+}
+
+.tm-custom-dropdown-item.selected {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.tm-custom-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tm-custom-dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.tm-control-btn {
+    background: var(--tm-glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--tm-glass-border);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: var(--heading-color);
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.tm-control-btn:hover {
+    transform: translateY(-2px);
+    background: #fff;
+    color: var(--secondary-color);
+}
+
+/* ============ 3. NAVIGATION CARD ============ */
+.tm-route-navigation-card {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--tm-glass-bg);
+    backdrop-filter: blur(15px);
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid var(--tm-glass-border);
+}
+
+.tm-route-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tm-route-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tm-route-stat-item .tm-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.tm-route-stat-item .tm-value {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.tm-route-stat-item .tm-value small {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.tm-route-divider {
+    width: 1px;
+    height: 30px;
+    background: #ddd;
+}
+
+.tm-btn-cancel-route {
+    background: #ffeded;
+    color: #e63946;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+    font-family: var(--font-name, sans-serif);
+}
+
+.tm-btn-cancel-route:hover {
+    background: #e63946;
+    color: #fff;
+}
+
+/* ============ 4. MARKERS & POPUPS ============ */
+.tm-snap-marker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s, z-index 0s;
+    /* Hints the browser to use GPU acceleration for smoother animations */
+    will-change: transform;
+}
+
+.tm-snap-bubble {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tm-snap-label {
+    margin-top: 7px;
+    background: var(--tm-glass-bg);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tm-snap-marker-container:hover {
+    z-index: 60;
+    transform: translateY(-10px) scale(1.1);
+}
+
+.tm-snap-marker-container:hover .tm-snap-bubble {
+    border-color: var(--secondary-color);
+}
+
+.tm-snap-marker-container:hover .tm-snap-label {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Active State */
+.tm-snap-marker-container.tm-active {
+    z-index: 70;
+}
+
+.tm-snap-marker-container.tm-active .tm-snap-bubble {
+    transform: scale(1.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 5px rgba(38, 70, 83, 0.25);
+}
+
+/* Popup Customization */
+.tm-custom-snap-popup {
+    z-index: 100 !important;
+}
+
+.tm-custom-snap-popup .mapboxgl-popup-content {
+    padding: 0;
+    border-radius: 16px;
+    width: 170px !important;
+    max-width: 170px !important;
+    height: 200px !important;
+    min-height: 200px !important;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tm-custom-snap-popup .mapboxgl-popup-close-button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    top: 7px;
+    right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: none;
+    z-index: 20;
+    backdrop-filter: blur(2px);
+    transition: background 0.2s;
+}
+
+.tm-custom-snap-popup .mapboxgl-popup-close-button:hover {
+    background: var(--secondary-color);
+}
+
+.tm-snap-popup-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.tm-snap-popup-header {
+    width: 100%;
+    height: 125px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tm-snap-popup-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tm-snap-badge {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.tm-snap-popup-body {
+    flex: 1;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.tm-snap-info h4 {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+.tm-snap-location {
+    font-size: 0.65rem;
+    color: var(--text-color);
+    margin-top: 1px;
+}
+
+.tm-snap-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.tm-snap-btn {
+    width: 100%;
+    padding: 4px 0;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+.tm-snap-btn.tm-primary {
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.tm-snap-btn.tm-secondary {
+    background: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============ 5. MOBILE OVERRIDES ============ */
+
+@media (max-width: 768px) {
+    .tm-map-section-wrapper {
+        min-height: auto !important;
+        padding-bottom: 20px;
+    }
+
+    .tm-map-main-box {
+        height: 65vh;
+        min-height: 400px;
+    }
+
+    .tm-map-internal-controls {
+        flex-direction: row;
+        gap: 8px;
+        width: calc(100% - 30px);
+        top: 15px;
+        left: 15px;
+    }
+
+    .tm-custom-dropdown-container {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+    }
+
+    .tm-custom-dropdown-trigger {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    .tm-control-btn {
+        flex: 0 0 42px;
+    }
+
+    .tm-route-navigation-card {
+        width: 70%;
+        bottom: 20px;
+        padding: 10px 15px;
+        justify-content: center;
+    }
+
+    .tm-route-stats {
+        gap: 10px;
+    }
+
+    .tm-route-stat-item .tm-value {
+        font-size: 0.9rem !important;
+        font-weight: 700;
+    }
+
+    .tm-route-stat-item .tm-label {
+        font-size: 0.55rem;
+    }
+
+    .tm-btn-cancel-route {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tm-map-section-wrapper {
+        padding: 10px 0;
+    }
+
+    .tm-map-main-box {
+        border-width: 3px;
+        border-radius: 16px;
+    }
+
+    .tm-control-btn {
+        width: 38px;
+        height: 38px;
+    }
+}

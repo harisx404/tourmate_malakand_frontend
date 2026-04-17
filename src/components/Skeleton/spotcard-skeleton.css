@@ -1,0 +1,169 @@
+/* ============ Spot Card Skeleton: Desktop Standard ============ */
+
+/* 1. Animation */
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.spot-card-skeleton-loader {
+    background: rgba(200, 200, 200, 0.2);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.spot-card-skeleton-loader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    animation: shimmer 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Container */
+.spot-card-skeleton-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.65) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+/* 3. Image Area */
+.spot-card-skeleton-img {
+    width: 100%;
+    height: 220px;
+    /* Desktop Height */
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* 4. Body Area */
+.spot-card-skeleton-body {
+    padding: 1.5rem !important;
+    /* Desktop Padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+/* 5. Elements */
+.spot-card-skeleton-title {
+    height: 1.4rem;
+    width: 80%;
+    margin-bottom: 1rem;
+    background: rgba(42, 157, 143, 0.12);
+    border-radius: 6px;
+}
+
+.spot-card-skeleton-text {
+    height: 0.9rem;
+    width: 100%;
+    margin-bottom: 0.6rem;
+    border-radius: 4px;
+}
+
+.spot-card-skeleton-btn {
+    height: 35px;
+    width: 95px;
+    border-radius: 50px;
+    background: rgba(42, 157, 143, 0.15);
+}
+
+.spot-card-skeleton-circle {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+}
+
+/* ================================================= */
+/* ============ MOBILE FIXES (< 768px) ============= */
+/* Matches the 3-Column Dense Grid of the Real Card  */
+/* ================================================= */
+
+@media (max-width: 767px) {
+
+    .spot-card-skeleton-wrapper {
+        margin-bottom: 0;
+        /* Gap is handled by grid padding */
+    }
+
+    .spot-card-skeleton-container {
+        border-radius: 8px !important;
+        /* Smaller radius */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* 1. Shrink Image to match Real Card mobile height */
+    .spot-card-skeleton-img {
+        height: 80px;
+    }
+
+    /* 2. Tighten Padding */
+    .spot-card-skeleton-body {
+        padding: 0.5rem !important;
+    }
+
+    /* 3. Scale Down Text Elements */
+    .spot-card-skeleton-title {
+        height: 0.8rem;
+        margin-bottom: 0.4rem;
+        width: 100%;
+    }
+
+    .spot-card-skeleton-text {
+        height: 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    /* 4. Adjust Meta Row (Location/Rating) */
+    .spot-card-skeleton-meta-row {
+        margin-bottom: 0.4rem !important;
+        gap: 4px;
+    }
+
+    .spot-card-skeleton-circle {
+        height: 12px;
+        width: 12px;
+    }
+
+    /* 5. Stack Footer Vertically (Like Real Card) */
+    .spot-card-skeleton-footer {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 6px;
+        margin-top: 0.4rem !important;
+        padding-top: 0.4rem;
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    /* 6. Fix Button to be Full Width Block */
+    .spot-card-skeleton-btn {
+        width: 100%;
+        height: 20px;
+        /* Thinner button */
+        border-radius: 4px;
+    }
+
+    .spot-card-skeleton-district {
+        width: 100% !important;
+    }
+}

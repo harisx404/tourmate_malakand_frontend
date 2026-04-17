@@ -1,0 +1,215 @@
+/* ============ LEGAL PAGES THEME ============ */
+
+.legal-page-section {
+    background-color: #f8f9fa;
+    /* Subtle radial gradient to add depth to the flat background */
+    background-image: radial-gradient(circle at 10% 20%, rgba(42, 157, 143, 0.05) 0%, transparent 20%);
+
+    /* Fluid Padding Strategy: 
+     * Scales vertically based on viewport height to maintain visual balance 
+     * on both mobile (compact) and desktop (spacious).
+     */
+    padding-top: clamp(2rem, 5vh, 3rem);
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+
+    min-height: 100vh;
+}
+
+/* ============ Card Container ============ */
+.legal-page-glassy-card {
+    background: rgba(255, 255, 255, 0.9);
+
+    /* Frosted glass effect */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(38, 70, 83, 0.08);
+
+    /* Fluid Container Padding:
+     * Reduces internal whitespace on mobile (1.5rem) to maximize content area,
+     * while offering breathable margins on desktop (4rem).
+     */
+    padding: clamp(1.5rem, 5vw, 4rem);
+
+    position: relative;
+    overflow: hidden;
+
+    /* Layout Safety: Prevent card from causing horizontal scroll on small viewports */
+    max-width: 100%;
+}
+
+/* Decorative top border for brand consistency */
+.legal-page-glassy-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--secondary-color);
+}
+
+/* ============ Typography & Headers ============ */
+.legal-header-wrapper {
+    margin-bottom: 3rem;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.05);
+    padding-bottom: 2rem;
+}
+
+.legal-page-title {
+    /* Fluid Typography: Scales smoothly between 1.75rem and 2.5rem */
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 0.8rem;
+
+    /* Force line breaks on long words to prevent layout overflow */
+    word-wrap: break-word;
+}
+
+.legal-last-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(42, 157, 143, 0.1);
+    color: var(--secondary-color);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    /* Allow text wrapping on ultra-narrow screens */
+    white-space: normal;
+    text-align: center;
+}
+
+/* ============ Content Blocks ============ */
+.legal-content-block {
+    margin-bottom: 2.5rem;
+}
+
+.legal-section-title {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.legal-icon-box {
+    width: 36px;
+    height: 36px;
+    background: #eefbf9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: transform 0.3s;
+
+    /* Flexbox Safety: Prevents icon compression when title text wraps */
+    flex-shrink: 0;
+}
+
+/* Interactive hover state for section headers */
+.legal-content-block:hover .legal-icon-box {
+    transform: scale(1.05) rotate(10deg);
+    background: var(--secondary-color);
+    color: #fff;
+}
+
+.legal-page-glassy-card p {
+    font-size: 1.05rem;
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+
+    /* Visual Hierarchy: Indent content to align with header text (desktop only) */
+    padding-left: 48px;
+}
+
+.legal-page-glassy-card ul {
+    list-style: none;
+    padding-left: 48px;
+    margin-bottom: 1.5rem;
+}
+
+.legal-page-glassy-card ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Custom styled bullets matching brand theme */
+.legal-page-glassy-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+}
+
+/* ============ Links ============ */
+.legal-link-contact,
+.legal-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: all 0.2s;
+
+    /* Ensure long email addresses break to the next line on mobile */
+    word-break: break-word;
+}
+
+.legal-link-contact:hover,
+.legal-link:hover {
+    color: var(--primary-color);
+}
+
+/* ============ Responsive Overrides ============ */
+
+/* Tablet & Mobile (< 992px) */
+@media (max-width: 992px) {
+
+    /* Readability Optimization: Remove indentation to maximize horizontal space */
+    .legal-page-glassy-card p,
+    .legal-page-glassy-card ul {
+        padding-left: 0;
+    }
+}
+
+/* Small Mobile (< 450px) */
+@media (max-width: 450px) {
+    .legal-page-title {
+        font-size: 1.6rem;
+    }
+
+    .legal-last-updated {
+        font-size: 0.75rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Layout Adjustment: Stack icon and title vertically if horizontal space is critical */
+    .legal-section-title {
+        align-items: flex-start;
+    }
+}

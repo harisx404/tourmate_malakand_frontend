@@ -1,0 +1,18 @@
+/* ============ The Image Style ============ */
+.masonry-gallery-img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ============ The "Come Out" Hover Effect ============ */
+.masonry-gallery-img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+    filter: brightness(1.1);
+}

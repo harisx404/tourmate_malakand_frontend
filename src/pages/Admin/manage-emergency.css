@@ -1,0 +1,401 @@
+/* ============ 0. Reset & Fluidity ============ */
+.man_em_section * {
+    box-sizing: border-box;
+}
+
+/* ============ 1. Page Layout ============ */
+.man_em_section {
+    padding: 1.5rem 0 5rem 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ============ 2. Header & District Selector ============ */
+.man_em_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.man_em_page_title {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.man_em_page_subtitle {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+    margin-top: 0.5rem;
+}
+
+.man_em_page_subtitle strong {
+    color: var(--secondary-color);
+}
+
+/* --- DROPDOWN STYLING --- */
+.man_em_select_wrapper {
+    position: relative;
+    min-width: 220px;
+    flex-shrink: 0;
+}
+
+.man_em_dropdown {
+    position: relative;
+    /* Crucial for internal absolute positioning */
+    width: 100%;
+}
+
+.man_em_drop_trigger {
+    width: 100%;
+    padding: 12px 20px;
+    /* Adjusted padding for better fit in table rows */
+    border-radius: 50px;
+    border: 1px solid #e1e1e1;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: 0.3s ease;
+    white-space: nowrap;
+    height: 48px;
+    /* Fixed height to match inputs */
+}
+
+.man_em_drop_trigger:hover {
+    border-color: var(--secondary-color);
+    background: #fff;
+}
+
+.man_em_drop_trigger i {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    transition: transform 0.3s;
+    margin-left: 10px;
+}
+
+.man_em_rotate {
+    transform: rotate(180deg);
+}
+
+.man_em_drop_menu {
+    position: absolute;
+    top: 115%;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    border: 1px solid #eee;
+    max-height: 220px;
+    overflow-y: auto;
+    animation: manEmFadeDown 0.2s ease-out;
+    z-index: 1000;
+    min-width: 140px;
+    /* Prevent menu getting too thin */
+}
+
+@keyframes manEmFadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.man_em_drop_item {
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.man_em_drop_item:hover {
+    background: rgba(42, 157, 143, 0.08);
+    color: var(--secondary-color);
+}
+
+.man_em_active {
+    background: var(--secondary-color) !important;
+    color: #fff !important;
+}
+
+.man_em_drop_menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.man_em_drop_menu::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+/* ============ 3. Glassy Form Card ============ */
+.man_em_glass_card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* ============ 4. Contact Rows ============ */
+.man_em_list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Allow dropdowns to overflow */
+    overflow: visible;
+}
+
+.man_em_row {
+    display: flex;
+    gap: 12px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    align-items: flex-end;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    /* Animation creates stacking context, handled via dynamic z-index in JS */
+    animation: manEmFadeIn 0.4s ease-out forwards;
+    position: relative;
+    /* Required for z-index to work */
+}
+
+.man_em_row:hover {
+    border-color: rgba(42, 157, 143, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes manEmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Input Columns Layout */
+.man_em_col_input {
+    display: flex;
+    flex-direction: column;
+}
+
+.man_em_col_title {
+    flex: 2;
+}
+
+.man_em_col_number {
+    flex: 1.5;
+}
+
+.man_em_col_loc {
+    flex: 1.5;
+}
+
+.man_em_col_type {
+    flex: 1.2;
+    position: relative;
+}
+
+/* Relative helps dropdown anchor */
+.man_em_col_action {
+    flex: 0 0 42px;
+    display: flex;
+    justify-content: center;
+}
+
+.man_em_label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 5px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Input Styling */
+.man_em_input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #eee;
+    background: #fcfcfc;
+    font-size: 0.9rem;
+    color: var(--heading-color);
+    outline: none;
+    transition: 0.3s;
+    height: 48px;
+    /* Consistent height */
+}
+
+.man_em_input:focus {
+    background: #fff;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.1);
+}
+
+/* Delete Button */
+.man_em_btn_delete {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: #ffebee;
+    color: #e63946;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 3px;
+    /* visual alignment with inputs */
+}
+
+.man_em_btn_delete:hover {
+    background: #e63946;
+    color: #fff;
+    transform: rotate(45deg);
+}
+
+/* ============ 5. Footer Actions ============ */
+.man_em_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-top: 1.5rem;
+}
+
+.man_em_btn_add {
+    background: transparent;
+    border: 2px dashed rgba(42, 157, 143, 0.4);
+    color: var(--secondary-color);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.man_em_btn_add:hover {
+    background: rgba(42, 157, 143, 0.05);
+    border-color: var(--secondary-color);
+}
+
+.man_em_btn_save {
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.man_em_btn_save:hover {
+    transform: translateY(-2px);
+    background-color: var(--secondary-color);
+}
+
+.man_em_btn_save:active {
+    background-color: var(--primary-color);
+}
+
+.man_em_btn_save:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============ RESPONSIVE BREAKPOINTS ============ */
+
+@media (max-width: 991px) {
+    .man_em_row {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+        /* Reset z-index calculation if rows are stacked vertically with enough gap, 
+           but usually safer to keep the dynamic z-index. */
+    }
+
+    .man_em_col_action {
+        align-self: flex-end;
+        margin-top: -5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .man_em_header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .man_em_select_wrapper {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .man_em_drop_trigger {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    .man_em_glass_card {
+        padding: 1.5rem 1rem;
+    }
+
+    .man_em_footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .man_em_btn_save,
+    .man_em_btn_add {
+        width: 100%;
+        justify-content: center;
+    }
+}

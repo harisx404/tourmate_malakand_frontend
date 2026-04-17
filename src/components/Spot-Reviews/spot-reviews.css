@@ -1,0 +1,267 @@
+/* ============ SPOT REVIEWS STYLES ============ */
+
+/* --- MAIN CONTAINER --- */
+.spot-reviews-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    width: 100%;
+    margin-top: -1rem;
+}
+
+.spot-reviews-card h4 {
+    font-weight: 700;
+    color: var(--primary-color);
+    border-bottom: 2px solid rgba(42, 157, 143, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+
+/* Rating Group */
+.spot-reviews-rating-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.spot-reviews-star-span {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.spot-reviews-star-span:hover {
+    transform: scale(1.2);
+}
+
+.spot-reviews-rating-group i {
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
+    transition: color 0.2s;
+}
+
+.spot-reviews-active-star {
+    color: #2a9d8f;
+    filter: drop-shadow(0 2px 4px rgba(41, 186, 169, 0.3));
+}
+
+.spot-reviews-inactive-star {
+    color: #e4e4e4;
+}
+
+/* --- INPUT WRAPPER --- */
+.spot-reviews-input-wrapper {
+    background: #fff;
+    padding: 0.4rem;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--secondary-color);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s, border-color 0.3s;
+    /* Forces side-by-side layout on all screens */
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+}
+
+.spot-reviews-input-wrapper:focus-within {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.15);
+}
+
+.spot-reviews-input-wrapper input {
+    border: none;
+    padding-left: 1rem;
+    flex: 1;
+    /* Takes up remaining space */
+    min-width: 0;
+    /* prevents overflow on small screens */
+    outline: none;
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+/* Submit Button */
+.spot-reviews-submit-btn {
+    border-radius: 50px !important;
+    padding: 8px 20px !important;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    /* Ensures button never shrinks/hides */
+    font-size: 0.9rem !important;
+}
+
+.spot-reviews-submit-btn:hover {
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.25);
+    transform: translateY(-1px);
+}
+
+.spot-reviews-submit-btn:active {
+    background-color: var(--primary-color);
+}
+
+/* --- SCROLLABLE LIST --- */
+.spot-reviews-scrollable {
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-top: 1rem;
+}
+
+.spot-reviews-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.spot-reviews-scrollable::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.spot-reviews-scrollable::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* --- INDIVIDUAL REVIEW ITEM --- */
+.spot-reviews-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(0.6rem, 2vw, 1.2rem);
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+    background: #fafafa;
+    transition: all 0.2s;
+}
+
+.spot-reviews-item:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-color: rgba(42, 157, 143, 0.2);
+}
+
+.spot-reviews-item:last-child {
+    margin-bottom: 0;
+}
+
+.spot-reviews-item img {
+    width: clamp(2rem, 8vw, 3rem);
+    height: clamp(2rem, 8vw, 3rem);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-top: 0.7rem;
+}
+
+/* Review Content */
+.spot-reviews-item h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+.spot-reviews-date {
+    font-size: 0.7rem;
+    color: #999;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.spot-reviews-rating-pill {
+    background: #e0f2f1;
+    color: #2a9d8f;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+.spot-reviews-msg {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-top: 6px;
+    font-weight: 400;
+    word-break: break-word;
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* Small Mobile Breakpoint (<576px) */
+@media (max-width: 576px) {
+    .spot-reviews-card {
+        padding: 1rem;
+        margin-bottom: -0.5rem;
+        margin-top: -2.5rem;
+    }
+
+    .spot-reviews-card h4 {
+        font-size: 1.5rem;
+    }
+
+    /* Input Wrapper tweaks for tight spaces: */
+    .spot-reviews-input-wrapper {
+        padding: 0.3rem;
+        /* slightly tighter padding to save width */
+        gap: 0.3rem;
+    }
+
+    .spot-reviews-input-wrapper input {
+        font-size: 0.85rem;
+        padding-left: 0.8rem;
+    }
+
+    .spot-reviews-submit-btn {
+        padding: 8px 16px !important;
+        /* Slightly smaller button padding */
+        font-size: 0.85rem !important;
+    }
+
+    /* Scroll Limit for Mobile */
+    .spot-reviews-scrollable {
+        max-height: 320px;
+    }
+
+    .spot-reviews-item {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .spot-reviews-item img {
+        width: 2.2rem;
+        height: 2.2rem;
+        margin-top: 1rem;
+    }
+
+    .spot-reviews-item h5 {
+        font-size: 0.9rem;
+    }
+
+    .spot-reviews-msg {
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+
+    .spot-reviews-item-header {
+        align-items: flex-start !important;
+    }
+
+    .spot-reviews-user-info {
+        flex: 1;
+    }
+
+    .spot-reviews-actions {
+        align-self: flex-start;
+    }
+}

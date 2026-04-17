@@ -1,0 +1,65 @@
+/*====== 1. CONTAINER: Centers the loader comfortably ======*/
+.tm-minimal-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 65vh;
+    /* Takes up space but isn't overwhelming */
+    background: transparent;
+}
+
+/*====== 2. SPINNER BOX: Holds the ring and text together ======*/
+.tm-spinner-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/*====== 3. THE SLEEK SPINNER: A thin, elegant ring ======*/
+.tm-sleek-spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid rgba(42, 157, 143, 0.2);
+    /* Faint Secondary Color */
+    border-top-color: var(--secondary-color);
+    /* Solid Primary Color */
+    animation: tmMinimalSpin 0.8s linear infinite;
+}
+
+/*====== 4. TYPOGRAPHY: Clean, Uppercase, Spaced out ======*/
+.tm-minimal-text {
+    font-family: var(--font-name);
+    /* Montserrat - Professional & Clean */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Adds that "Premium" feel */
+    color: var(--secondary-color);
+    animation: tmBreath 2s ease-in-out infinite;
+}
+
+/*====== 5. ANIMATIONS ======*/
+
+/* Smooth Rotation */
+@keyframes tmMinimalSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Subtle Opacity Pulse for text */
+@keyframes tmBreath {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
