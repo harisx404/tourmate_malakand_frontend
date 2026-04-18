@@ -8,6 +8,8 @@
 
 > **Live Deployment:** [tourmate-malakand.vercel.app](https://tourmate-malakand.vercel.app)
 
+> **Frontend Repo:** [TourMate-Malakand Frontend](https://github.com/harisx404/tourmate_malakand_backend) 
+
 ## Overview
 TourMate Malakand is a full-stack MERN web application built to solve the regional information gap in the Malakand Division. This client-side application provides tourists and locals with reliable digital guidance, allowing them to travel safely and efficiently without relying on fragmented information. Built as a Single Page Application (SPA) using React.js and Vite, it delivers a highly responsive, component-based user experience across all devices. 
 
