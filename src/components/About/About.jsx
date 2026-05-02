@@ -21,18 +21,18 @@ const aboutData = [
     },
     {
         id: 3,
-        name: "Dr. Pervez Khan",
-        role: "Project Supervisor",
-        desc: "As our project supervisor, he continuously reviewed our work, provided valuable feedback, and guided us in improving both technical and conceptual aspects. His supervision played a key role in shaping the project’s quality.",
-        img: avatar
-    },
-    {
-        id: 4,
         name: "Dr. Fakhruddin",
         role: "Project Supervisor",
         desc: "As our project supervisor, he regularly guided us throughout the project timeline and development. He helped clarify concepts, monitored our progress, and provided consistent academic support to meet university standards.",
         img: avatar
-    }
+    },
+    {
+        id: 4,
+        name: "Muhammad Haris",
+        role: "Lead Developer",
+        desc: "I worked as the core developer of this project, handling frontend design, component structure, and overall system flow. I focused on building a clean, user-friendly interface that helps tourists easily explore the Malakand Division.",
+        img: avatar
+    },
 ];
 
 /*
